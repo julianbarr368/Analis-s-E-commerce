@@ -1,0 +1,9 @@
+--Limpieza y transformación de datos de la tabla de los productos--
+COPY(SELECT p.product_id,
+			t.product_category_name_english AS product_category_name ----Se seleccionan las columnas que se quieren mostrar y se le cambia el nombre a la columna--
+FROM dim_product AS p
+	LEFT JOIN dim_product_category_name_translation AS t ON p.product_category_name = t.product_category_name
+ORDER BY p.product_id) TO 'C:\E_commerce project\Clean data\dim_product.csv' WITH DELIMITER ',' CSV HEADER;
+--Se cambia el nombre de los productos a inglés y se ordena por el product_id--	
+--Se crea directamente el archivo csv con el resultado del query--
+		

@@ -1,0 +1,11 @@
+--Limpieza y transformación de datos de la tabla de customer--
+COPY( SELECT  c.customer_id,
+			  c.customer_zip_code,
+			  c.customer_city,
+		      si.state_name --Se seleccionan las columnas que se quieren mostrar--
+FROM dim_custumer AS c
+	INNER JOIN dim_state_initials AS si ON c.customer_state = si.leters
+ORDER BY c.customer_id) TO 'C:\E_commerce project\Clean data\dim_custumer.csv' WITH DELIMITER ',' CSV HEADER;
+--Se cambia el nombre de los estados que están con siglas y se pone el nombre completo--	
+--Se crea directamente el archivo csv con el resultado del query--
+	

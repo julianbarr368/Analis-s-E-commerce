@@ -1,0 +1,11 @@
+--Limpieza y transformación de datos de la tabla de seller--
+COPY( SELECT  s.seller_id,
+			  s.seller_zip_code,
+			  s.seller_city,
+		      si.state_name --Se seleccionan las columnas que se quieren mostrar--
+FROM dim_sellers AS s
+	INNER JOIN dim_state_initials AS si ON s.seller_state = si.leters
+ORDER BY  s.seller_id) TO 'C:\E_commerce project\Clean data\dim_sellerr.csv' WITH DELIMITER ',' CSV HEADER;
+--Se cambia el nombre de los estados que están con siglas y se pone el nombre completo--	
+--Se crea directamente el archivo csv con el resultado del query--
+	

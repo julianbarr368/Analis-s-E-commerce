@@ -1,0 +1,31 @@
+--Limpieza y transformación de datos de la tabla de las ventas--
+COPY (SELECT os.order_id,
+			 os.product_id,
+			 os.seller_id,
+			 o.customer_id,
+			 o.order_purchase AS date_purchase,
+			 o.order_estimated_delivery_date AS estimated_delivery_date,
+			 o.order_delivered_customer_date AS delivered_customer_date,
+	   	 	 os.order_item_id AS number_items_order,
+			 op.payment_sequential AS number_payment_methods,
+			 op.payment_type,
+			 op.payment_installments,
+			 os.price,
+			 os.freight_value,
+			 op.payment_value AS total_value --Se seleccionan las columnas que se quieren mostrar, se ordenan segun el tipo de columna y se le cambia el nombre a algunas de ellas--
+FROM fact_order_sales AS os
+	LEFT JOIN fact_order_payment AS op ON os.order_id = op.order_id
+	LEFT JOIN dim_order AS o ON os.order_id = o.order_id
+ORDER BY os.order_id) TO 'C:\E_commerce project\Clean data\fact_order_sales.csv' WITH DELIMITER ',' CSV HEADER;
+--Se agreaga la información sobre metodos de pagos de la tabla fact_order_payment--	
+--Se agreaga la información sobre clinetes y fechas del paquete de la tabla dim_order--
+--Se crea directamente el archivo csv con el resultado del query--
+
+
+
+
+
+
+
+
+		

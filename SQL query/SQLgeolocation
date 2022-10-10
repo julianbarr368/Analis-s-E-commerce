@@ -1,0 +1,15 @@
+--Limpieza y transformación de datos de la tabla de geolocalización--
+COPY( SELECT  g.geolocation_zip_code AS zip_code,
+		g.geolocation_lat AS latitude,
+		g.geolocation_lng AS longitude,
+		g.geolocation_city AS City,
+		si.state_name --Se seleccionan las columnas que se quieren mostrar y se le cambia el nombre a las columnas--
+FROM dim_geolocation AS g
+	INNER JOIN dim_state_initials AS si ON g.geolocation_state = si.leters
+ORDER BY zip_code) TO 'C:\E_commerce project\Clean data\dim_geolocation.csv' WITH DELIMITER ',' CSV HEADER;
+--Se cambia el nombre de los estados que están con siglas y se pone el nombre completo--	
+--Se crea directamente el archivo csv con el resultado del query--
+	
+
+
+		
