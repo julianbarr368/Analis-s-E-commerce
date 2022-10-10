@@ -43,6 +43,8 @@ Se cuenta con registros desde octubre del 2016 hasta agosto del 2018, con más d
     │   ├── SQLproducts.sql            <- Query usado para extraer los datos de los productoss.
     │   └── SQLseller.sql              <- Query usado para extraer los datos de los vendedores.
     │
+    ├── Raw data                       <- Archivos extraidos de Kaggle.
+    │
     ├── README.md                      <- Toda la información sobre el proyecto.
     │
     ├── proyecto e_commerce.pbix       <- Archivo de POWER BI con los modelos y dashboards creados. 
